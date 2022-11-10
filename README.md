@@ -79,3 +79,9 @@ Adding a truthy argument ('1', or 'true') to the end will emit json. The same in
   }
 }
 ```
+
+## Aggregation Notes
+
+Partial hours are not called out - if you ask for mid-hour boundaries, events will only be summed up to the second of start or end time. 
+
+Events are considered part of the bucket at the beginning of the hour up to 59 seconds before the following. This forms a half-open interval, closed on the front side, like `[start_time, end_time)`.
