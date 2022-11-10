@@ -22,6 +22,8 @@ You may run the enclosed container directly from Docker hub:
 
 `docker run -ti intjonathan/mtm-homework`
 
+(See the [hub image page](https://hub.docker.com/r/intjonathan/mtm_homework) if needed.)
+
 Or you may build locally:
 
 `docker build -t intjonathan/mtm-homework . && docker run -ti intjonathan/mtm-homework`
