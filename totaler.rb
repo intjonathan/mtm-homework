@@ -76,6 +76,7 @@ module Totaler
                 puts "Input file: #{file}"
                 puts "Start time: #{start_time}"
                 puts "End time: #{end_time}\n"
+                puts "Customer ID: #{customer_id}" if customer_id
                 hour_buckets.each do | bucket |
                     puts "\nTimebucket: #{bucket.first}"
                     bucket[1].keys.each do | customer_id | 

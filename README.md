@@ -59,7 +59,7 @@ Customer ID: 009b178fa33bd5d0459d8b2cb825f9f4 Calls: 8
 
 ```
 
-Adding a truthy argument ('1', or 'true') to the end will emit json. The same invocation as above with that argument change would produce:
+Adding a `true` after the end time will cause the output to appear in json format. The same invocation as above with that argument change would produce:
 
 ```json
 {
@@ -80,6 +80,25 @@ Adding a truthy argument ('1', or 'true') to the end will emit json. The same in
     "009b178fa33bd5d0459d8b2cb825f9f4": 8
   }
 }
+```
+
+To filter results to a specific customer, you may pass a `customer_id` as the last argument. 
+
+```bash
+ $ ./totaler.rb account_event_totals_1h events.csv 2021-03-01T04:00:00Z 2021-03-01T06:30:00Z false 30330c9c4e7173ba9474c46ee5191570
+Input file: events.csv
+Start time: 2021-03-01 04:00:00 UTC
+End time: 2021-03-01 06:30:00 UTC
+Customer ID: 30330c9c4e7173ba9474c46ee5191570
+
+Timebucket: 2021-03-01 04:00:00 +0000
+Customer ID: 30330c9c4e7173ba9474c46ee5191570 Calls: 36
+
+Timebucket: 2021-03-01 05:00:00 +0000
+Customer ID: 30330c9c4e7173ba9474c46ee5191570 Calls: 9
+
+Timebucket: 2021-03-01 06:00:00 +0000
+Customer ID: 30330c9c4e7173ba9474c46ee5191570 Calls: 9
 ```
 
 ## Aggregation Notes
