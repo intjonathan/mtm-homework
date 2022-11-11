@@ -18,8 +18,9 @@ module Totaler
         argument :start_time, type: :string, required: true, desc: "Start timestamp in ISO 8601 format (CCYY-MM-DDThh:mm:ssTZ)"
         argument :end_time, type: :string, required: true, desc: "End timestamp in ISO 8601 format (CCYY-MM-DDThh:mm:ssTZ)"
         argument :json, type: :string, default: false, desc: "'true' to emit results in JSON format"
+        argument :customer_id, type: :string, default: false, desc: "Filter results to given customer ID"
 
-        def call(file:, start_time:, end_time:, json:, **)
+        def call(file:, start_time:, end_time:, json:, customer_id:, **)
             begin 
                 start_time = Time.xmlschema(start_time)
             rescue ArgumentError => e
@@ -54,6 +55,8 @@ module Totaler
                 # am I in the specified window?
                 # this will be a half-open interval like [,) 
                 if line_time >= start_time and line_time < end_time
+                    # test if customer ID filter is requested
+                    next if customer_id && line[:customer_id] != customer_id
                     # initalize customer ID message counter
                     # surely there's a better way to do this :(
                     if hour_buckets[line_hour_window.to_s] == nil
@@ -67,7 +70,7 @@ module Totaler
             end
 
             
-            if json
+            if json == "true"
                 puts hour_buckets.to_json
             else
                 puts "Input file: #{file}"
